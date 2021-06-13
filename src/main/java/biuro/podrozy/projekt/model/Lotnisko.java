@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true, value = {"tripsTo", "tripsFrom"})
+//@JsonIgnoreProperties(ignoreUnknown = true, value = {"tripsTo", "tripsFrom"})
 public class Lotnisko {
 
 	@Id
@@ -35,35 +35,35 @@ public class Lotnisko {
 	
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "cityId")
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private Miasto city;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "tripId")
-	private List<Wycieczka> tripsTo;
-	
-	@OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "tripId")
-	private List<Wycieczka> tripsFrom;
+//	@OneToMany(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "tripId")
+//	private List<Wycieczka> tripsTo;
+//	
+//	@OneToMany(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "tripId")
+//	private List<Wycieczka> tripsFrom;
 
 	public Lotnisko() {
-		tripsTo = new ArrayList<>();
-		tripsFrom = new ArrayList<>();
+//		tripsTo = new ArrayList<>();
+//		tripsFrom = new ArrayList<>();
 	}
 	
 	public Lotnisko(String name) {
 		this.name = name;
-		tripsTo = new ArrayList<>();
-		tripsFrom = new ArrayList<>();
+//		tripsTo = new ArrayList<>();
+//		tripsFrom = new ArrayList<>();
 	}
 
 	public Lotnisko(String name, Miasto city) {
 		this.name = name;
 		this.city = city;
-		tripsTo = new ArrayList<>();
-		tripsFrom = new ArrayList<>();
+//		tripsTo = new ArrayList<>();
+//		tripsFrom = new ArrayList<>();
 	}
 	
 	public Long getAirportId() {
@@ -90,21 +90,21 @@ public class Lotnisko {
 		this.city = city;
 	}
 
-	public List<Wycieczka> getTripsTo() {
-		return tripsTo;
-	}
-
-	public void setTripsTo(List<Wycieczka> tripsTo) {
-		this.tripsTo = tripsTo;
-	}
-
-	public List<Wycieczka> getTripsFrom() {
-		return tripsFrom;
-	}
-
-	public void setTripsFrom(List<Wycieczka> tripsFrom) {
-		this.tripsFrom = tripsFrom;
-	}
+//	public List<Wycieczka> getTripsTo() {
+//		return tripsTo;
+//	}
+//
+//	public void setTripsTo(List<Wycieczka> tripsTo) {
+//		this.tripsTo = tripsTo;
+//	}
+//
+//	public List<Wycieczka> getTripsFrom() {
+//		return tripsFrom;
+//	}
+//
+//	public void setTripsFrom(List<Wycieczka> tripsFrom) {
+//		this.tripsFrom = tripsFrom;
+//	}
 	
 	
 }

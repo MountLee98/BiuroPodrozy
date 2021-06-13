@@ -47,9 +47,9 @@ public class HotelServiceImpl implements HotelService{
 		Optional<Miasto> m = miastoRepo.findById(id);
 		if(m.isPresent()) {
 			hotel.setCity(m.get());
-			m.get().getHotels().add(hotel);
+//			m.get().getHotels().add(hotel);
 			hotelRepo.save(hotel);
-			miastoRepo.save(m.get());
+//			miastoRepo.save(m.get());
 		}
 	}
 
@@ -103,14 +103,15 @@ public class HotelServiceImpl implements HotelService{
 	public boolean deleteById(Long id) {
 		Optional<Hotel> h = hotelRepo.findById(id);
 		if(h.isPresent()) {
-			if(h.get().getTrips().isEmpty()) {
-				hotelRepo.delete(h.get());
-			} else {
-				for(Wycieczka wyc : h.get().getTrips()) {
-					wycRepo.delete(wyc);
-				}
-				hotelRepo.delete(h.get());
-			}
+//			if(h.get().getTrips().isEmpty()) {
+//				hotelRepo.delete(h.get());
+//			} else {
+//				for(Wycieczka wyc : h.get().getTrips()) {
+//					wycRepo.delete(wyc);
+//				}
+//				hotelRepo.delete(h.get());
+//			}
+			hotelRepo.delete(h.get());
 			return true; 
 		}
 		return false;

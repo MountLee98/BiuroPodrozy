@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true, value = {"cities"})
+//@JsonIgnoreProperties(ignoreUnknown = true, value = {"cities"})
 public class Kraj {
 	
 	@Id
@@ -34,28 +34,28 @@ public class Kraj {
 	
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "continentId")
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private Kontynent continent;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "cityId")
-	private List<Miasto> cities;
+//	@OneToMany(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "cityId")
+//	private List<Miasto> cities;
 	
 	public Kraj() {
-		cities = new ArrayList<>();
+//		cities = new ArrayList<>();
 	}
 	
 	public Kraj(String name) {
 		this.name = name;
-		cities = new ArrayList<>();
+//		cities = new ArrayList<>();
 	}
 
 	public Kraj(String name, Kontynent continent) {
 		this.name = name;
 		this.continent = continent;
-		cities = new ArrayList<>();
+//		cities = new ArrayList<>();
 	}
 	
 	public Long getCountryId() {
@@ -82,13 +82,13 @@ public class Kraj {
 		this.continent = continent;
 	}
 
-	public List<Miasto> getCities() {
-		return cities;
-	}
-
-	public void setCities(List<Miasto> cities) {
-		this.cities = cities;
-	}
+//	public List<Miasto> getCities() {
+//		return cities;
+//	}
+//
+//	public void setCities(List<Miasto> cities) {
+//		this.cities = cities;
+//	}
 	
 	
 }

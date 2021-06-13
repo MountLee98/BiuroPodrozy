@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true, value = {"trips"})
+//@JsonIgnoreProperties(ignoreUnknown = true, value = {"trips"})
 public class Hotel {
 
 	@Id
@@ -37,14 +37,14 @@ public class Hotel {
 	
 	private String description;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "cityId")
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private Miasto city;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "tripId")
-    private List<Wycieczka> trips;
+//	@OneToMany(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "tripId")
+//    private List<Wycieczka> trips;
 
 	public Hotel() {
 
@@ -99,13 +99,13 @@ public class Hotel {
 		this.city = city;
 	}
 
-	public List<Wycieczka> getTrips() {
-		return trips;
-	}
-
-	public void setTrips(List<Wycieczka> trips) {
-		this.trips = trips;
-	}
+//	public List<Wycieczka> getTrips() {
+//		return trips;
+//	}
+//
+//	public void setTrips(List<Wycieczka> trips) {
+//		this.trips = trips;
+//	}
 	
 	
 }

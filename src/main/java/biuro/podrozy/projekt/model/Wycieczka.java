@@ -27,24 +27,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true, value = {"tripsPurchases"})
+//@JsonIgnoreProperties(ignoreUnknown = true, value = {"tripsPurchases"})
 public class Wycieczka {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long tripId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "airportId")
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private Lotnisko from;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "airportId", insertable=false, updatable=false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private Lotnisko to;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "hotelId")
     private Hotel hotel;
 
@@ -68,9 +68,9 @@ public class Wycieczka {
 	
 	private File photo;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "tripPurchaseId")
-    private List<ZakupWycieczki> tripsPurchases;
+//	@OneToMany(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "tripPurchaseId")
+//    private List<ZakupWycieczki> tripsPurchases;
 
 	public Long getTripId() {
 		return tripId;
@@ -184,13 +184,13 @@ public class Wycieczka {
 		this.photo = photo;
 	}
 
-	public List<ZakupWycieczki> getTripsPurchases() {
-		return tripsPurchases;
-	}
-
-	public void setTripsPurchases(List<ZakupWycieczki> tripsPurchases) {
-		this.tripsPurchases = tripsPurchases;
-	}
+//	public List<ZakupWycieczki> getTripsPurchases() {
+//		return tripsPurchases;
+//	}
+//
+//	public void setTripsPurchases(List<ZakupWycieczki> tripsPurchases) {
+//		this.tripsPurchases = tripsPurchases;
+//	}
 	
 	
 }

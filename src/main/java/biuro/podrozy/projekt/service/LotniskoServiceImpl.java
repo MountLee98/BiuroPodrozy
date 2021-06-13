@@ -45,9 +45,9 @@ public class LotniskoServiceImpl implements LotniskoService{
 		Optional<Miasto> m = miastoRepo.findById(id);
 		if(m.isPresent()) {
 			lotnisko.setCity(m.get());
-			m.get().getAirports().add(lotnisko);
+//			m.get().getAirports().add(lotnisko);
 			lotniskoRepo.save(lotnisko);
-			miastoRepo.save(m.get());
+//			miastoRepo.save(m.get());
 		}
 	}
 
@@ -83,31 +83,32 @@ public class LotniskoServiceImpl implements LotniskoService{
 	public boolean deleteById(Long id) {
 		Optional<Lotnisko> l = lotniskoRepo.findById(id);
 		if(l.isPresent()) {
-			if(l.get().getTripsFrom().isEmpty() && l.get().getTripsTo().isEmpty()) {
-				lotniskoRepo.delete(l.get());
-			} else {
-				if(l.get().getTripsFrom().isEmpty()) {
-					for(Wycieczka wyc : l.get().getTripsTo()) {
-						wycRepo.delete(wyc);
-					}
-					lotniskoRepo.delete(l.get());
-				} else {
-					if(l.get().getTripsTo().isEmpty()) {
-						for(Wycieczka wyc : l.get().getTripsFrom()) {
-							wycRepo.delete(wyc);
-							lotniskoRepo.delete(l.get());
-						}
-					} else {
-						for(Wycieczka wyc : l.get().getTripsFrom()) {
-							wycRepo.delete(wyc);
-						}
-						for(Wycieczka wyc : l.get().getTripsTo()) {
-							wycRepo.delete(wyc);
-						}
-						lotniskoRepo.delete(l.get());
-					}
-				}
-			}
+//			if(l.get().getTripsFrom().isEmpty() && l.get().getTripsTo().isEmpty()) {
+//				lotniskoRepo.delete(l.get());
+//			} else {
+//				if(l.get().getTripsFrom().isEmpty()) {
+//					for(Wycieczka wyc : l.get().getTripsTo()) {
+//						wycRepo.delete(wyc);
+//					}
+//					lotniskoRepo.delete(l.get());
+//				} else {
+//					if(l.get().getTripsTo().isEmpty()) {
+//						for(Wycieczka wyc : l.get().getTripsFrom()) {
+//							wycRepo.delete(wyc);
+//							lotniskoRepo.delete(l.get());
+//						}
+//					} else {
+//						for(Wycieczka wyc : l.get().getTripsFrom()) {
+//							wycRepo.delete(wyc);
+//						}
+//						for(Wycieczka wyc : l.get().getTripsTo()) {
+//							wycRepo.delete(wyc);
+//						}
+//						lotniskoRepo.delete(l.get());
+//					}
+//				}
+//			}
+			lotniskoRepo.delete(l.get());
 			return true;
 		}	
 		return false;

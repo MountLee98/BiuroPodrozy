@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Uczestnik {
 
 	@Id
@@ -35,7 +35,7 @@ public class Uczestnik {
 	
 	private boolean isChild;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "tripPurchaseId")
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private ZakupWycieczki tripPurchase;
