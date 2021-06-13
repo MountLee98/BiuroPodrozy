@@ -36,10 +36,11 @@ public class KrajServiceImpl implements KrajService{
 	public void addKraj(Long id, Kraj kraj) {
 		Optional<Kontynent> kont = kontynentRepo.findById(id);
 		if(kont.isPresent()) {
-			kraj.setContinent(kont.get());
-//			kont.get().getCountries().add(kraj);
-			krajRepo.save(kraj);
-//			kontynentRepo.save(kont.get());
+			//kraj.setContinent(kont.get());
+			kraj = krajRepo.save(kraj);
+			kont.get().getCountries().add(kraj);
+			//krajRepo.save(kraj);
+			kontynentRepo.save(kont.get());
 		}
 	}
 
@@ -75,15 +76,15 @@ public class KrajServiceImpl implements KrajService{
 	public boolean deleteById(Long id) {
 		Optional<Kraj> k = krajRepo.findById(id);
 		if(k.isPresent()) {
-//			if(k.get().getCities().isEmpty()) {
-//				krajRepo.delete(k.get());
-//			} else {
-//				for(Miasto city : k.get().getCities()) {
-//					miastoRepo.delete(city);
-//				}
-//				krajRepo.delete(k.get());
-//			}
-			krajRepo.delete(k.get());
+			if(k.get().getCities().isEmpty()) {
+				krajRepo.delete(k.get());
+			} else {
+				for(Miasto city : k.get().getCities()) {
+					miastoRepo.delete(city);
+				}
+				krajRepo.delete(k.get());
+			}
+			//krajRepo.delete(k.get());
 			return true;
 		}	
 		return false;

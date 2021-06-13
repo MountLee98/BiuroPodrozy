@@ -69,9 +69,9 @@ public class WycieczkaServiceImpl implements WycieczkaService{
 //					lTo.get().getTripsTo().add(wyc);
 //					h.get().getTrips().add(wyc);
 					wycRepo.save(wyc);
-//					lotniskoRepo.save(lFrom.get());
-//					lotniskoRepo.save(lTo.get());
-//					hotelRepo.save(h.get());
+					lotniskoRepo.save(lFrom.get());
+					lotniskoRepo.save(lTo.get());
+					hotelRepo.save(h.get());
 				}
 			}
 		}
@@ -272,15 +272,15 @@ public class WycieczkaServiceImpl implements WycieczkaService{
 	public boolean deleteById(Long id) {
 		Optional<Wycieczka> w = wycRepo.findById(id);
 		if(w.isPresent()) {
-//			if(w.get().getTripsPurchases().isEmpty()) {
-//				wycRepo.delete(w.get());
-//			} else {
-//				for(ZakupWycieczki zakup : w.get().getTripsPurchases()) {
-//					zakupRepo.delete(zakup);
-//				}
-//				wycRepo.delete(w.get());
-//			}
-			wycRepo.delete(w.get());
+			if(w.get().getTripsPurchases().isEmpty()) {
+				wycRepo.delete(w.get());
+			} else {
+				for(ZakupWycieczki zakup : w.get().getTripsPurchases()) {
+					zakupRepo.delete(zakup);
+				}
+				wycRepo.delete(w.get());
+			}
+			//wycRepo.delete(w.get());
 			return true;
 		}	
 		return false;

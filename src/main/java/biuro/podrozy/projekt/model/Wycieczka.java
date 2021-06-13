@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIgnoreProperties(ignoreUnknown = true, value = {"tripsPurchases"})
+@JsonIgnoreProperties(ignoreUnknown = true/*, value = {"tripsPurchases"}*/)
 public class Wycieczka {
 
 	@Id
@@ -71,9 +71,9 @@ public class Wycieczka {
 	
 	private File photo;
 	
-//	@OneToMany(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "tripPurchaseId")
-//    private List<ZakupWycieczki> tripsPurchases;
+	@OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "tripPurchaseId")
+    private List<ZakupWycieczki> tripsPurchases;
 
 	public Long getTripId() {
 		return tripId;
@@ -187,13 +187,13 @@ public class Wycieczka {
 		this.photo = photo;
 	}
 
-//	public List<ZakupWycieczki> getTripsPurchases() {
-//		return tripsPurchases;
-//	}
-//
-//	public void setTripsPurchases(List<ZakupWycieczki> tripsPurchases) {
-//		this.tripsPurchases = tripsPurchases;
-//	}
+	public List<ZakupWycieczki> getTripsPurchases() {
+		return tripsPurchases;
+	}
+
+	public void setTripsPurchases(List<ZakupWycieczki> tripsPurchases) {
+		this.tripsPurchases = tripsPurchases;
+	}
 	
 	
 }

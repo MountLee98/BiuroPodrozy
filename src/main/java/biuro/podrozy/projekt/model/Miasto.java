@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIgnoreProperties(ignoreUnknown = true, value = {"hotels", "airports"})
+@JsonIgnoreProperties(ignoreUnknown = true/*, value = {"hotels", "airports"}*/)
 public class Miasto {
 
 	@Id
@@ -34,35 +34,37 @@ public class Miasto {
 	
 	private String name;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "countryId")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-    private Kraj country;
+//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @JoinColumn(name = "countryId")
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//    private Kraj country;
 
-//	@OneToMany(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "hotelId")
-//	private List<Hotel> hotels;
-//	
-//	@OneToMany(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "airportId")
-//	private List<Lotnisko> airports;
+	//@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "hotelId")
+	private List<Hotel> hotels;
+	
+	//@OneToMany(cascade = CascadeType.REMOVE)
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "airportId")
+	private List<Lotnisko> airports;
 	
 	public Miasto() {
-//		hotels = new ArrayList<>();
-//		airports = new ArrayList<>();
+		hotels = new ArrayList<>();
+		airports = new ArrayList<>();
 	}
 	
 	public Miasto(String name) {
 		this.name = name;
-//		hotels = new ArrayList<>();
-//		airports = new ArrayList<>();
+		hotels = new ArrayList<>();
+		airports = new ArrayList<>();
 	}
 	
 	public Miasto(String name, Kraj country) {
 		this.name = name;
-		this.country = country;
-//		hotels = new ArrayList<>();
-//		airports = new ArrayList<>();
+//		this.country = country;
+		hotels = new ArrayList<>();
+		airports = new ArrayList<>();
 	}
 
 	public Long getCityId() {
@@ -81,29 +83,29 @@ public class Miasto {
 		this.name = name;
 	}
 
-	public Kraj getCountry() {
-		return country;
+//	public Kraj getCountry() {
+//		return country;
+//	}
+//
+//	public void setCountry(Kraj country) {
+//		this.country = country;
+//	}
+
+	public List<Hotel> getHotels() {
+		return hotels;
 	}
 
-	public void setCountry(Kraj country) {
-		this.country = country;
+	public void setHotels(List<Hotel> hotels) {
+		this.hotels = hotels;
 	}
 
-//	public List<Hotel> getHotels() {
-//		return hotels;
-//	}
-//
-//	public void setHotels(List<Hotel> hotels) {
-//		this.hotels = hotels;
-//	}
-//
-//	public List<Lotnisko> getAirports() {
-//		return airports;
-//	}
-//
-//	public void setAirports(List<Lotnisko> airports) {
-//		this.airports = airports;
-//	}
+	public List<Lotnisko> getAirports() {
+		return airports;
+	}
+
+	public void setAirports(List<Lotnisko> airports) {
+		this.airports = airports;
+	}
 	
 	
 }

@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIgnoreProperties(ignoreUnknown = true, value = {"countries"})
+@JsonIgnoreProperties(ignoreUnknown = true/*, value = {"countries"}*/)
 public class Kontynent {
 
 	@Id
@@ -32,17 +32,19 @@ public class Kontynent {
 	
 	private String name;
 	
-//	@OneToMany(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "countryId")
-//	private List<Kraj> countries;
+	//@OneToMany(cascade = CascadeType.REMOVE)
+	//@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "countryId")
+	private List<Kraj> countries;
 	
 	public Kontynent() {
-//		countries = new ArrayList<>();
+		countries = new ArrayList<>();
 	}
 	
 	public Kontynent(String name) {
 		this.name = name;
-//		countries = new ArrayList<>();
+		countries = new ArrayList<>();
 	}
 
 	public Long getContinentId() {
@@ -61,13 +63,13 @@ public class Kontynent {
 		this.name = name;
 	}
 
-//	public List<Kraj> getCountries() {
-//		return countries;
-//	}
-//
-//	public void setCountries(List<Kraj> countries) {
-//		this.countries = countries;
-//	}
+	public List<Kraj> getCountries() {
+		return countries;
+	}
+
+	public void setCountries(List<Kraj> countries) {
+		this.countries = countries;
+	}
 	
 	
 		
