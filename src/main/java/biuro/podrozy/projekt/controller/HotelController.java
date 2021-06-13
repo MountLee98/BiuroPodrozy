@@ -52,13 +52,13 @@ public class HotelController {
 	UczestnikService uczestnikService;
 	
 	@GetMapping("/getall")
-	List<Hotel> getAllAirport() {
+	List<Hotel> getAllHotel() {
 		List<Hotel> list = hotelService.getAll();
 		return list;
 	}
 	
 	@PostMapping("/addhotel")
-	void addAirport(@RequestParam("cityId")Long id, @RequestParam("name")String name) {		
+	void addHotel(@RequestParam("cityId")Long id, @RequestParam("name")String name) {		
 		hotelService.addHotel(id, new Hotel(name));
 	}
 	
@@ -80,7 +80,7 @@ public class HotelController {
 	}
 	
 	@DeleteMapping("/deletehotel")
-	boolean deleteAirport(@RequestParam("hotelId")Long id) {
+	boolean deleteHotel(@RequestParam("hotelId")Long id) {
 		return hotelService.deleteById(id);
 	}
 	

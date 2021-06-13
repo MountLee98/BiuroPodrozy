@@ -35,17 +35,20 @@ public class Wycieczka {
 	private Long tripId;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "airportId")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+    //@JoinColumn(name = "airportId")
+	@JoinColumn(name = "airport_from_Id")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
     private Lotnisko from;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "airportId", insertable=false, updatable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+    //@JoinColumn(name = "airportId", insertable=false, updatable=false)
+	@JoinColumn(name = "airport_to_Id")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
     private Lotnisko to;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "hotelId")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
     private Hotel hotel;
 
 	private LocalDate departureDate;
