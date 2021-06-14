@@ -31,16 +31,16 @@ public class ZakupWycieczki {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long tripPurchaseId;
 	
-//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinColumn(name = "tripId")
-//	@OnDelete(action = OnDeleteAction.CASCADE)
-//    private Wycieczka trip;
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "tripId")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+    private Wycieczka trip;
 	
 	//@OneToMany
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name = "tripId")
-    @Column(name = "trip")
-    private List<Uczestnik> clientList;
+//	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//	@JoinColumn(name = "tripId")
+//    @Column(name = "trip")
+//    private List<Uczestnik> clientList;
 	
 	private float price;
 
@@ -52,13 +52,13 @@ public class ZakupWycieczki {
 		this.tripPurchaseId = tripPurchaseId;
 	}
 
-//	public Wycieczka getTrip() {
-//		return trip;
-//	}
-//
-//	public void setTrip(Wycieczka trip) {
-//		this.trip = trip;
-//	}
+	public Wycieczka getTrip() {
+		return trip;
+	}
+
+	public void setTrip(Wycieczka trip) {
+		this.trip = trip;
+	}
 
 	public float getPrice() {
 		return price;
@@ -68,13 +68,13 @@ public class ZakupWycieczki {
 		this.price = price;
 	}
 
-	public List<Uczestnik> getClientList() {
-		return clientList;
-	}
-
-	public void setClientList(List<Uczestnik> clientList) {
-		this.clientList = clientList;
-	}
+//	public List<Uczestnik> getClientList() {
+//		return clientList;
+//	}
+//
+//	public void setClientList(List<Uczestnik> clientList) {
+//		this.clientList = clientList;
+//	}
 		
 	
 }

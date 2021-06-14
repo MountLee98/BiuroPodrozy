@@ -34,30 +34,30 @@ public class Kraj {
 	
 	private String name;
 	
-//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinColumn(name = "continentId")
-//	@OnDelete(action = OnDeleteAction.CASCADE)
-//    private Kontynent continent;
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "continentId")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+    private Kontynent continent;
 	
 	//@OneToMany(cascade = CascadeType.REMOVE)
 	//@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cityId")
-	private List<Miasto> cities;
+//	@OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "cityId")
+//	private List<Miasto> cities;
 	
 	public Kraj() {
-		cities = new ArrayList<>();
+//		cities = new ArrayList<>();
 	}
 	
 	public Kraj(String name) {
 		this.name = name;
-		cities = new ArrayList<>();
+//		cities = new ArrayList<>();
 	}
 
 	public Kraj(String name, Kontynent continent) {
 		this.name = name;
-//		this.continent = continent;
-		cities = new ArrayList<>();
+		this.continent = continent;
+//		cities = new ArrayList<>();
 	}
 	
 	public Long getCountryId() {
@@ -76,21 +76,21 @@ public class Kraj {
 		this.name = name;
 	}
 
-//	public Kontynent getContinent() {
-//		return continent;
+	public Kontynent getContinent() {
+		return continent;
+	}
+
+	public void setContinent(Kontynent continent) {
+		this.continent = continent;
+	}
+
+//	public List<Miasto> getCities() {
+//		return cities;
 //	}
 //
-//	public void setContinent(Kontynent continent) {
-//		this.continent = continent;
+//	public void setCities(List<Miasto> cities) {
+//		this.cities = cities;
 //	}
-
-	public List<Miasto> getCities() {
-		return cities;
-	}
-
-	public void setCities(List<Miasto> cities) {
-		this.cities = cities;
-	}
 	
 	
 }

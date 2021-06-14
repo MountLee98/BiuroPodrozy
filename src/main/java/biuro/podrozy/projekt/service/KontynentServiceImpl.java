@@ -64,16 +64,16 @@ public class KontynentServiceImpl implements KontynentService{
 	public boolean deleteById(Long id) {
 		Optional<Kontynent> k = kontynentRepo.findById(id);
 		if(k.isPresent()) {
-			if(k.get().getCountries().isEmpty()) {
-				kontynentRepo.delete(k.get());
-			} else {
-				for(Kraj country : k.get().getCountries()) {
-					krajRepo.delete(country);
-				}
-				kontynentRepo.delete(k.get());
-			
-			}
-			//kontynentRepo.delete(k.get());
+//			if(k.get().getCountries().isEmpty()) {
+//				kontynentRepo.delete(k.get());
+//			} else {
+//				for(Kraj country : k.get().getCountries()) {
+//					krajRepo.delete(country);
+//				}
+//				kontynentRepo.delete(k.get());
+//			
+//			}
+			kontynentRepo.delete(k.get());
 			return true;
 		}	
 		return false;

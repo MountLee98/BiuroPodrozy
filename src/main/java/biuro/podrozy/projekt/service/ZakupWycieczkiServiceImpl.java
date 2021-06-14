@@ -58,23 +58,23 @@ public class ZakupWycieczkiServiceImpl implements ZakupWycieczkiService{
 	public void addZakupWycieczki(Long id, ZakupWycieczki zakup) {
 		Optional<Wycieczka> w = wycRepo.findById(id);
 		if(w.isPresent()) {
-//			zakup.setTrip(w.get());
-			w.get().getTripsPurchases().add(zakup);
+			zakup.setTrip(w.get());
+//			w.get().getTripsPurchases().add(zakup);
 			zakupRepo.save(zakup);
-			wycRepo.save(w.get());
+//			wycRepo.save(w.get());
 		}
 	}
 	
 	@Override
 	public List<ZakupWycieczki> getByTrip(Wycieczka wyc) {
-		Optional<Wycieczka> w = wycRepo.findById(wyc.getTripId());
-		if(w.isPresent()) {
-			List<ZakupWycieczki> z = w.get().getTripsPurchases();
-			//List<ZakupWycieczki> z = getAll().stream().filter(x -> x.getTrip() == wyc).collect(Collectors.toList());
+//		Optional<Wycieczka> w = wycRepo.findById(wyc.getTripId());
+//		if(w.isPresent()) {
+//			List<ZakupWycieczki> z = w.get().getTripsPurchases();
+			List<ZakupWycieczki> z = getAll().stream().filter(x -> x.getTrip() == wyc).collect(Collectors.toList());
 			if(z.isEmpty() == false) {
 				return z;
 			}
-		}	
+//		}	
 		return null;
 	}
 
@@ -92,15 +92,15 @@ public class ZakupWycieczkiServiceImpl implements ZakupWycieczkiService{
 	public boolean deleteById(Long id) {
 		Optional<ZakupWycieczki> z = zakupRepo.findById(id);
 		if(z.isPresent()) {
-			if(z.get().getClientList().isEmpty()) {
-				zakupRepo.delete(z.get());
-			} else {
-				for(Uczestnik ucz : z.get().getClientList()) {
-					uczestnikRepo.delete(ucz);
-				}
-				zakupRepo.delete(z.get());
-			}
-			//zakupRepo.delete(z.get());
+//			if(z.get().getClientList().isEmpty()) {
+//				zakupRepo.delete(z.get());
+//			} else {
+//				for(Uczestnik ucz : z.get().getClientList()) {
+//					uczestnikRepo.delete(ucz);
+//				}
+//				zakupRepo.delete(z.get());
+//			}
+			zakupRepo.delete(z.get());
 			return true;
 		}	
 		return false;

@@ -35,10 +35,10 @@ public class Lotnisko {
 	
 	private String name;
 	
-//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinColumn(name = "cityId")
-//	@OnDelete(action = OnDeleteAction.CASCADE)
-//    private Miasto city;
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "cityId")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+    private Miasto city;
 	
 //	@OneToMany(cascade = CascadeType.REMOVE)
 //    @JoinColumn(name = "tripId")
@@ -61,7 +61,7 @@ public class Lotnisko {
 
 	public Lotnisko(String name, Miasto city) {
 		this.name = name;
-//		this.city = city;
+		this.city = city;
 //		tripsTo = new ArrayList<>();
 //		tripsFrom = new ArrayList<>();
 	}
@@ -82,13 +82,13 @@ public class Lotnisko {
 		this.name = name;
 	}
 
-//	public Miasto getCity() {
-//		return city;
-//	}
-//
-//	public void setCity(Miasto city) {
-//		this.city = city;
-//	}
+	public Miasto getCity() {
+		return city;
+	}
+
+	public void setCity(Miasto city) {
+		this.city = city;
+	}
 
 //	public List<Wycieczka> getTripsTo() {
 //		return tripsTo;

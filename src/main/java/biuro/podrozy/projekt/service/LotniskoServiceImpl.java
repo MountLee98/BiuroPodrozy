@@ -44,10 +44,10 @@ public class LotniskoServiceImpl implements LotniskoService{
 	public void addLotnisko(Long id, Lotnisko lotnisko) {
 		Optional<Miasto> m = miastoRepo.findById(id);
 		if(m.isPresent()) {
-//			lotnisko.setCity(m.get());
-			m.get().getAirports().add(lotnisko);
+			lotnisko.setCity(m.get());
+//			m.get().getAirports().add(lotnisko);
 			lotniskoRepo.save(lotnisko);
-			miastoRepo.save(m.get());
+//			miastoRepo.save(m.get());
 		}
 	}
 

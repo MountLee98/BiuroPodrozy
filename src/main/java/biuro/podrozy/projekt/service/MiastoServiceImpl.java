@@ -45,10 +45,10 @@ public class MiastoServiceImpl implements MiastoService{
 	public void addMiasto(Long id, Miasto miasto) {
 		Optional<Kraj> k = krajRepo.findById(id);
 		if(k.isPresent()) {
-//			miasto.setCountry(k.get());
-			k.get().getCities().add(miasto);
+			miasto.setCountry(k.get());
+//			k.get().getCities().add(miasto);
 			miastoRepo.save(miasto);
-			krajRepo.save(k.get());
+//			krajRepo.save(k.get());
 		}
 	}
 
@@ -84,31 +84,31 @@ public class MiastoServiceImpl implements MiastoService{
 	public boolean deleteById(Long id) {
 		Optional<Miasto> m = miastoRepo.findById(id);
 		if(m.isPresent()) {
-			if(m.get().getHotels().isEmpty() && m.get().getAirports().isEmpty()) {
-				miastoRepo.delete(m.get());
-			} else {
-				if(m.get().getHotels().isEmpty()) {
-					for(Lotnisko airport : m.get().getAirports()) {
-						lotniskoRepo.delete(airport);
-					}
-					miastoRepo.delete(m.get());
-				} else {
-					if(m.get().getAirports().isEmpty()) {
-						for(Hotel hotel : m.get().getHotels()) {
-							hotelRepo.delete(hotel);
-						}
-						miastoRepo.delete(m.get());
-					} else {
-						for(Hotel hotel : m.get().getHotels()) {
-							hotelRepo.delete(hotel);
-						}
-						for(Lotnisko airport : m.get().getAirports()) {
-							lotniskoRepo.delete(airport);
-						}
-						miastoRepo.delete(m.get());
-					} 
-				}
-			}
+//			if(m.get().getHotels().isEmpty() && m.get().getAirports().isEmpty()) {
+//				miastoRepo.delete(m.get());
+//			} else {
+//				if(m.get().getHotels().isEmpty()) {
+//					for(Lotnisko airport : m.get().getAirports()) {
+//						lotniskoRepo.delete(airport);
+//					}
+//					miastoRepo.delete(m.get());
+//				} else {
+//					if(m.get().getAirports().isEmpty()) {
+//						for(Hotel hotel : m.get().getHotels()) {
+//							hotelRepo.delete(hotel);
+//						}
+//						miastoRepo.delete(m.get());
+//					} else {
+//						for(Hotel hotel : m.get().getHotels()) {
+//							hotelRepo.delete(hotel);
+//						}
+//						for(Lotnisko airport : m.get().getAirports()) {
+//							lotniskoRepo.delete(airport);
+//						}
+//						miastoRepo.delete(m.get());
+//					} 
+//				}
+//			}
 			miastoRepo.delete(m.get());
 			return true;
 		}	

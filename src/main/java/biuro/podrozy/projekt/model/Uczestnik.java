@@ -35,10 +35,10 @@ public class Uczestnik {
 	
 	private boolean isChild;
 	
-//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinColumn(name = "tripPurchaseId")
-//	@OnDelete(action = OnDeleteAction.CASCADE)
-//    private ZakupWycieczki tripPurchase;
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "tripPurchaseId")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+    private ZakupWycieczki tripPurchase;
 	
 	public Uczestnik() {
 		
@@ -91,12 +91,12 @@ public class Uczestnik {
 		this.isChild = isChild;
 	}
 
-//	public ZakupWycieczki getTripPurchase() {
-//		return tripPurchase;
-//	}
-//
-//	public void setTripPurchase(ZakupWycieczki tripPurchase) {
-//		this.tripPurchase = tripPurchase;
-//	}
+	public ZakupWycieczki getTripPurchase() {
+		return tripPurchase;
+	}
+
+	public void setTripPurchase(ZakupWycieczki tripPurchase) {
+		this.tripPurchase = tripPurchase;
+	}
 		
 }
